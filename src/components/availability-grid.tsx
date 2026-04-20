@@ -56,6 +56,7 @@ export function AvailabilityGrid({
 }: Props) {
   const days = useMemo(() => buildScheduleDays(event, locale), [event, locale]);
   const [selectedSlots, setSelectedSlots] = useState(new Set(initialSelectedSlots));
+  const [viewMode, setViewMode] = useState<"selection" | "overlap">("selection");
   const [dragMode, setDragMode] = useState<boolean | null>(null);
   const [activeCell, setActiveCell] = useState("");
   const cellRefs = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -135,23 +136,49 @@ export function AvailabilityGrid({
     <div className="grid gap-6">
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
         <div className="rounded-[1.75rem] border border-zinc-900/10 bg-white p-4 shadow-sm sm:p-6">
-          <div className="mb-4 grid gap-3 md:grid-cols-2">
-            <div className="rounded-[1.25rem] border border-lime-200 bg-lime-50 px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">{labels.yourAvailability}</p>
-              <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-lime-300 px-3 py-1.5 text-sm font-semibold text-zinc-900">
-                <span className="h-2.5 w-2.5 rounded-full bg-lime-600" />
-                {labels.activeSelection}
-              </div>
+          <div className="mb-4 grid gap-3">
+            <div className="inline-flex w-fit rounded-full border border-zinc-200 bg-zinc-100 p-1">
+              <button
+                type="button"
+                onClick={() => setViewMode("selection")}
+                className={cn(
+                  "rounded-full px-4 py-2 text-sm font-semibold transition",
+                  viewMode === "selection" ? "bg-white text-zinc-950 shadow-sm" : "text-zinc-500 hover:text-zinc-900",
+                )}
+              >
+                {labels.yourAvailability}
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode("overlap")}
+                className={cn(
+                  "rounded-full px-4 py-2 text-sm font-semibold transition",
+                  viewMode === "overlap" ? "bg-white text-zinc-950 shadow-sm" : "text-zinc-500 hover:text-zinc-900",
+                )}
+              >
+                {labels.intensity}
+              </button>
             </div>
-            <div className="rounded-[1.25rem] border border-zinc-200 bg-zinc-50 px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">{labels.intensity}</p>
-              <div className="mt-3 flex items-center gap-2 text-sm font-medium text-zinc-700">
-                <span className="h-8 w-8 rounded-xl border border-zinc-200 bg-white" />
-                <span className="h-8 w-8 rounded-xl bg-lime-100" />
-                <span className="h-8 w-8 rounded-xl bg-lime-200" />
-                <span className="h-8 w-8 rounded-xl bg-lime-300" />
+
+            {viewMode === "selection" ? (
+              <div className="rounded-[1.25rem] border border-lime-200 bg-lime-50 px-4 py-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">{labels.yourAvailability}</p>
+                <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-lime-300 px-3 py-1.5 text-sm font-semibold text-zinc-900">
+                  <span className="h-2.5 w-2.5 rounded-full bg-lime-600" />
+                  {labels.activeSelection}
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="rounded-[1.25rem] border border-zinc-200 bg-zinc-50 px-4 py-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">{labels.intensity}</p>
+                <div className="mt-3 flex items-center gap-2 text-sm font-medium text-zinc-700">
+                  <span className="h-8 w-8 rounded-xl border border-zinc-200 bg-white" />
+                  <span className="h-8 w-8 rounded-xl bg-lime-100" />
+                  <span className="h-8 w-8 rounded-xl bg-lime-200" />
+                  <span className="h-8 w-8 rounded-xl bg-lime-300" />
+                </div>
+              </div>
+            )}
           </div>
 
           <form action={formAction} className="grid gap-4">
@@ -189,15 +216,19 @@ export function AvailabilityGrid({
                           }}
                           type="button"
                           aria-pressed={selected}
-                          onPointerDown={() => startDrag(slot.slotId)}
+                          onPointerDown={() => {
+                            if (viewMode === "selection") {
+                              startDrag(slot.slotId);
+                            }
+                          }}
                           onPointerEnter={() => {
-                            if (dragMode !== null) {
+                            if (viewMode === "selection" && dragMode !== null) {
                               updateSlot(slot.slotId, dragMode);
                             }
                           }}
                           onFocus={() => setActiveCell(slot.slotId)}
                           onKeyDown={(event) => {
-                            if (event.key === " " || event.key === "Enter") {
+                            if (viewMode === "selection" && (event.key === " " || event.key === "Enter")) {
                               event.preventDefault();
                               updateSlot(slot.slotId);
                             }
@@ -224,13 +255,18 @@ export function AvailabilityGrid({
                           }}
                           className={cn(
                             "group relative border-t border-l border-zinc-200 p-0 transition",
-                            selected ? "bg-lime-400 text-zinc-900" : intensityClass(slot.slotId),
+                            viewMode === "selection"
+                              ? selected
+                                ? "bg-lime-400 text-zinc-900"
+                                : "bg-white"
+                              : intensityClass(slot.slotId),
                             activeCell === slot.slotId && "ring-2 ring-inset ring-lime-500",
+                            viewMode === "overlap" && "cursor-default",
                           )}
                         >
                           <span className="absolute inset-0 opacity-0 transition group-hover:opacity-100 group-focus:opacity-100 bg-white/10" />
                           <span className="relative flex h-11 items-center justify-center text-xs font-semibold">
-                            {selected ? "✓" : count > 0 ? count : ""}
+                            {viewMode === "selection" ? (selected ? "✓" : "") : count > 0 ? count : ""}
                           </span>
                         </button>
                       );
@@ -240,16 +276,18 @@ export function AvailabilityGrid({
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className={cn("text-sm", state.status === "error" ? "text-rose-500" : "text-zinc-500")}>
-                {state.status === "success" && state.message
-                  ? `${labels.saved} · ${labels.updatedAt} ${state.message}`
-                  : state.message}
+            {viewMode === "selection" ? (
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className={cn("text-sm", state.status === "error" ? "text-rose-500" : "text-zinc-500")}>
+                  {state.status === "success" && state.message
+                    ? `${labels.saved} · ${labels.updatedAt} ${state.message}`
+                    : state.message}
+                </div>
+                <button type="submit" disabled={pending} className="rounded-full bg-lime-300 px-5 py-3 text-sm font-semibold text-zinc-900 transition hover:bg-lime-400 disabled:opacity-70">
+                  {pending ? labels.saving : labels.save}
+                </button>
               </div>
-              <button type="submit" disabled={pending} className="rounded-full bg-lime-300 px-5 py-3 text-sm font-semibold text-zinc-900 transition hover:bg-lime-400 disabled:opacity-70">
-                {pending ? labels.saving : labels.save}
-              </button>
-            </div>
+            ) : null}
           </form>
         </div>
 
