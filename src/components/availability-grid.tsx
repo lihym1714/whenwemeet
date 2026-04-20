@@ -28,8 +28,9 @@ type Props = {
     saving: string;
     saved: string;
     yourAvailability: string;
+    activeSelection: string;
     intensity: string;
-    summary: string;
+    participants: string;
     updatedAt: string;
     unknownParticipant: string;
   };
@@ -95,14 +96,14 @@ export function AvailabilityGrid({
     }
 
     if (count === maxCount) {
-      return "bg-lime-300/90";
+      return "bg-lime-300/90 text-zinc-900";
     }
 
     if (count >= Math.max(1, Math.ceil(maxCount * 0.66))) {
-      return "bg-lime-200/80";
+      return "bg-lime-200/80 text-zinc-900";
     }
 
-    return "bg-lime-100/80";
+    return "bg-lime-100/80 text-zinc-900";
   }
 
   function moveFocus(currentId: string, direction: "up" | "down" | "left" | "right") {
@@ -132,20 +133,25 @@ export function AvailabilityGrid({
 
   return (
     <div className="grid gap-6">
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
         <div className="rounded-[1.75rem] border border-zinc-900/10 bg-white p-4 shadow-sm sm:p-6">
-          <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-zinc-600">
-            <span className="inline-flex items-center gap-2 rounded-full bg-zinc-100 px-3 py-1.5 font-medium text-zinc-700">
-              <span className="h-2 w-2 rounded-full bg-zinc-950" />
-              {labels.yourAvailability}
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full bg-lime-100 px-3 py-1.5 font-medium text-zinc-700">
-              <span className="h-2 w-2 rounded-full bg-lime-400" />
-              {labels.intensity}
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full bg-zinc-100 px-3 py-1.5 font-medium text-zinc-700">
-              {labels.summary}: {selectedSlots.size}
-            </span>
+          <div className="mb-4 grid gap-3 md:grid-cols-2">
+            <div className="rounded-[1.25rem] border border-lime-200 bg-lime-50 px-4 py-4">
+              <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">{labels.yourAvailability}</p>
+              <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-lime-300 px-3 py-1.5 text-sm font-semibold text-zinc-900">
+                <span className="h-2.5 w-2.5 rounded-full bg-lime-600" />
+                {labels.activeSelection}
+              </div>
+            </div>
+            <div className="rounded-[1.25rem] border border-zinc-200 bg-zinc-50 px-4 py-4">
+              <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">{labels.intensity}</p>
+              <div className="mt-3 flex items-center gap-2 text-sm font-medium text-zinc-700">
+                <span className="h-8 w-8 rounded-xl border border-zinc-200 bg-white" />
+                <span className="h-8 w-8 rounded-xl bg-lime-100" />
+                <span className="h-8 w-8 rounded-xl bg-lime-200" />
+                <span className="h-8 w-8 rounded-xl bg-lime-300" />
+              </div>
+            </div>
           </div>
 
           <form action={formAction} className="grid gap-4">
@@ -157,7 +163,7 @@ export function AvailabilityGrid({
                 onPointerUp={() => setDragMode(null)}
                 onPointerLeave={() => setDragMode(null)}
               >
-                <div className="sticky left-0 top-0 z-20 border-b border-r border-zinc-200 bg-zinc-950/95 px-4 py-4 text-xs font-semibold uppercase tracking-[0.24em] text-zinc-300">
+                <div className="sticky left-0 top-0 z-20 border-b border-r border-zinc-200 bg-zinc-100/95 px-4 py-4 text-xs font-semibold uppercase tracking-[0.24em] text-zinc-500">
                   {event.timezone}
                 </div>
                 {days.map((day) => (
@@ -220,8 +226,8 @@ export function AvailabilityGrid({
                           }}
                           className={cn(
                             "group relative border-t border-l border-zinc-200 p-0 transition",
-                            selected ? "bg-zinc-950 text-white" : intensityClass(slot.slotId),
-                            activeCell === slot.slotId && "ring-2 ring-inset ring-zinc-950",
+                            selected ? "bg-lime-400 text-zinc-900" : intensityClass(slot.slotId),
+                            activeCell === slot.slotId && "ring-2 ring-inset ring-lime-500",
                           )}
                         >
                           <span className="absolute inset-0 opacity-0 transition group-hover:opacity-100 group-focus:opacity-100 bg-white/10" />
@@ -242,7 +248,7 @@ export function AvailabilityGrid({
                   ? `${labels.saved} · ${labels.updatedAt} ${state.message}`
                   : state.message}
               </div>
-              <button type="submit" disabled={pending} className="rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-zinc-800 disabled:opacity-70">
+              <button type="submit" disabled={pending} className="rounded-full bg-lime-300 px-5 py-3 text-sm font-semibold text-zinc-900 transition hover:bg-lime-400 disabled:opacity-70">
                 {pending ? labels.saving : labels.save}
               </button>
             </div>
@@ -251,19 +257,19 @@ export function AvailabilityGrid({
 
         <aside className="grid gap-4 rounded-[1.75rem] border border-zinc-900/10 bg-white p-6 shadow-sm">
           <div>
-            <p className="text-xs uppercase tracking-[0.24em] text-zinc-400">{labels.summary}</p>
-            <p className="mt-3 text-4xl font-semibold tracking-tight text-zinc-950">{selectedSlots.size}</p>
+            <p className="text-xs uppercase tracking-[0.24em] text-zinc-400">{labels.participants}</p>
           </div>
-          <div className="grid gap-2">
+          <div className="flex flex-wrap gap-2">
             {participantSummaries.map((participant) => (
-              <div key={participant.id} className="flex items-center justify-between rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm">
-                <span className="flex items-center gap-3 font-medium text-zinc-700">
-                  <span className={cn("inline-flex rounded-full px-2 py-1 text-xs font-bold", colorClasses[participant.color_token] ?? colorClasses.lime)}>
-                    {participant.display_name || labels.unknownParticipant}
-                  </span>
-                </span>
-                <span className="text-zinc-500">{participant.selectedCount}</span>
-              </div>
+              <span
+                key={participant.id}
+                className={cn(
+                  "inline-flex max-w-full items-center rounded-full px-3 py-2 text-sm font-semibold break-all",
+                  colorClasses[participant.color_token] ?? colorClasses.lime,
+                )}
+              >
+                {participant.display_name || labels.unknownParticipant}
+              </span>
             ))}
           </div>
         </aside>

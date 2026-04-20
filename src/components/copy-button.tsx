@@ -16,7 +16,7 @@ export function CopyButton({ value, label, copiedLabel }: { value: string; label
     <button
       type="button"
       onClick={handleCopy}
-      className="inline-flex items-center gap-2 rounded-full border border-zinc-900/10 bg-zinc-950 px-4 py-2 text-sm font-semibold text-white transition hover:scale-[1.01] hover:bg-zinc-800"
+      className="inline-flex items-center gap-2 rounded-full border border-lime-200 bg-lime-100 px-4 py-2 text-sm font-semibold text-zinc-900 transition hover:scale-[1.01] hover:bg-lime-200"
     >
       {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
       {copied ? copiedLabel : label}
