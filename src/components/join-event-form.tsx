@@ -2,7 +2,8 @@
 
 import { useActionState } from "react";
 
-import { initialActionState, joinEventAction } from "@/app/[locale]/actions";
+import { joinEventAction } from "@/app/[locale]/actions";
+import { initialActionState } from "@/lib/action-state";
 import type { AppLocale } from "@/i18n/routing";
 
 type Props = {

@@ -2,8 +2,9 @@
 
 import { useActionState } from "react";
 
-import { createEventAction, initialActionState } from "@/app/[locale]/actions";
+import { createEventAction } from "@/app/[locale]/actions";
 import type { AppLocale } from "@/i18n/routing";
+import { initialActionState } from "@/lib/action-state";
 
 const TIMEZONES = ["Asia/Seoul", "Asia/Tokyo", "Europe/London", "America/New_York", "America/Los_Angeles"];
 

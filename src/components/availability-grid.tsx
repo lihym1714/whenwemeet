@@ -2,7 +2,8 @@
 
 import { Fragment, useActionState, useMemo, useRef, useState } from "react";
 
-import { initialActionState, saveAvailabilityAction } from "@/app/[locale]/actions";
+import { saveAvailabilityAction } from "@/app/[locale]/actions";
+import { initialActionState } from "@/lib/action-state";
 import type { AppLocale } from "@/i18n/routing";
 import { buildScheduleDays } from "@/lib/schedule";
 import type { EventRecord } from "@/lib/types";

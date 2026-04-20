@@ -6,19 +6,11 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import type { AppLocale } from "@/i18n/routing";
+import type { ActionState } from "@/lib/action-state";
 import { hasSupabaseConfig } from "@/lib/env";
 import { getParticipantCookieName } from "@/lib/data/events";
 import { createSupabaseAdminClient } from "@/lib/supabase/server";
 import { parseTimeInput, randomToken, sha256, slugify } from "@/lib/utils";
-
-export type ActionState = {
-  status: "idle" | "error" | "success";
-  message?: string;
-};
-
-export const initialActionState: ActionState = {
-  status: "idle",
-};
 
 export async function createEventAction(
   locale: AppLocale,
