@@ -33,27 +33,27 @@ export function CreateEventForm({ locale, labels }: Props) {
   const [state, formAction, pending] = useActionState(createEventAction.bind(null, locale), initialActionState);
 
   return (
-    <form action={formAction} className="grid gap-5 rounded-[2rem] border border-white/10 bg-zinc-950/80 p-6 text-white shadow-2xl shadow-lime-950/10 backdrop-blur">
+    <form action={formAction} className="grid gap-5 rounded-[2rem] border border-zinc-900/10 bg-white/92 p-6 text-zinc-950 shadow-2xl shadow-lime-950/5 backdrop-blur">
       <div className="grid gap-2">
-        <label className="text-sm text-zinc-300" htmlFor="title">
+        <label className="text-sm text-zinc-600" htmlFor="title">
           {labels.titleLabel}
         </label>
-        <input id="title" name="title" required className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-lime-300/60" placeholder="Team offsite alignment" />
+        <input id="title" name="title" required className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-lime-400/80 focus:bg-white" placeholder="Team offsite alignment" />
       </div>
       <div className="grid gap-2 md:grid-cols-2 md:gap-4">
         <div className="grid gap-2">
-          <label className="text-sm text-zinc-300" htmlFor="hostName">
+          <label className="text-sm text-zinc-600" htmlFor="hostName">
             {labels.hostLabel}
           </label>
-          <input id="hostName" name="hostName" required className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-lime-300/60" placeholder="Minji" />
+          <input id="hostName" name="hostName" required className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-lime-400/80 focus:bg-white" placeholder="Minji" />
         </div>
         <div className="grid gap-2">
-          <label className="text-sm text-zinc-300" htmlFor="timezone">
+          <label className="text-sm text-zinc-600" htmlFor="timezone">
             {labels.timezoneLabel}
           </label>
-          <select id="timezone" name="timezone" defaultValue="Asia/Seoul" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-lime-300/60">
+          <select id="timezone" name="timezone" defaultValue="Asia/Seoul" className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-lime-400/80 focus:bg-white">
             {TIMEZONES.map((timezone) => (
-              <option key={timezone} value={timezone} className="bg-zinc-950">
+              <option key={timezone} value={timezone} className="bg-white text-zinc-950">
                 {timezone}
               </option>
             ))}
@@ -61,45 +61,45 @@ export function CreateEventForm({ locale, labels }: Props) {
         </div>
       </div>
       <div className="grid gap-2">
-        <label className="text-sm text-zinc-300" htmlFor="description">
+        <label className="text-sm text-zinc-600" htmlFor="description">
           {labels.descriptionLabel}
         </label>
-        <textarea id="description" name="description" rows={3} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-lime-300/60" placeholder="Decide which evening works for the whole group." />
+        <textarea id="description" name="description" rows={3} className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-lime-400/80 focus:bg-white" placeholder="Decide which evening works for the whole group." />
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <div className="grid gap-2">
-          <label className="text-sm text-zinc-300" htmlFor="startDate">
+          <label className="text-sm text-zinc-600" htmlFor="startDate">
             {labels.startDateLabel}
           </label>
-          <input id="startDate" name="startDate" type="date" required defaultValue={addDays(1)} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-lime-300/60" />
+          <input id="startDate" name="startDate" type="date" required defaultValue={addDays(1)} className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-lime-400/80 focus:bg-white" />
         </div>
         <div className="grid gap-2">
-          <label className="text-sm text-zinc-300" htmlFor="endDate">
+          <label className="text-sm text-zinc-600" htmlFor="endDate">
             {labels.endDateLabel}
           </label>
-          <input id="endDate" name="endDate" type="date" required defaultValue={addDays(4)} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-lime-300/60" />
+          <input id="endDate" name="endDate" type="date" required defaultValue={addDays(4)} className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-lime-400/80 focus:bg-white" />
         </div>
       </div>
       <div className="grid gap-4 md:grid-cols-3">
         <div className="grid gap-2">
-          <label className="text-sm text-zinc-300" htmlFor="dayStart">
+          <label className="text-sm text-zinc-600" htmlFor="dayStart">
             {labels.startTimeLabel}
           </label>
-          <input id="dayStart" name="dayStart" type="time" required defaultValue="09:00" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-lime-300/60" />
+          <input id="dayStart" name="dayStart" type="time" required defaultValue="09:00" className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-lime-400/80 focus:bg-white" />
         </div>
         <div className="grid gap-2">
-          <label className="text-sm text-zinc-300" htmlFor="dayEnd">
+          <label className="text-sm text-zinc-600" htmlFor="dayEnd">
             {labels.endTimeLabel}
           </label>
-          <input id="dayEnd" name="dayEnd" type="time" required defaultValue="22:00" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-lime-300/60" />
+          <input id="dayEnd" name="dayEnd" type="time" required defaultValue="22:00" className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-lime-400/80 focus:bg-white" />
         </div>
         <div className="grid gap-2">
-          <label className="text-sm text-zinc-300" htmlFor="slotMinutes">
+          <label className="text-sm text-zinc-600" htmlFor="slotMinutes">
             {labels.slotLabel}
           </label>
-          <select id="slotMinutes" name="slotMinutes" defaultValue="30" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-lime-300/60">
-            <option value="30" className="bg-zinc-950">30 min</option>
-            <option value="60" className="bg-zinc-950">60 min</option>
+          <select id="slotMinutes" name="slotMinutes" defaultValue="30" className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-lime-400/80 focus:bg-white">
+            <option value="30" className="bg-white text-zinc-950">30 min</option>
+            <option value="60" className="bg-white text-zinc-950">60 min</option>
           </select>
         </div>
       </div>

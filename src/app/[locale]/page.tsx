@@ -18,43 +18,43 @@ export default async function HomePage({
   const previewPoints = [tHome("previewPoints.0"), tHome("previewPoints.1"), tHome("previewPoints.2")];
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#09090b] text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(163,230,53,0.2),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(34,211,238,0.18),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.02),_transparent_50%)]" />
+    <main className="min-h-screen overflow-hidden bg-[#f7f6f1] text-zinc-950">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(163,230,53,0.16),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(34,211,238,0.14),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.72),_rgba(255,255,255,0.15))]" />
       <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-8 lg:px-10">
         <header className="flex items-center justify-between">
-          <Link href={`/${locale}`} className="inline-flex items-center gap-3 text-sm font-medium text-white/90">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-lime-300">
+          <Link href={`/${locale}`} className="inline-flex items-center gap-3 text-sm font-medium text-zinc-900">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-zinc-900/10 bg-white text-lime-500 shadow-sm">
               <Sparkles className="h-5 w-5" />
             </span>
             WhenWeMeet
           </Link>
-          <LanguageSwitcher currentLocale={locale} label={tLocale("switch")} />
+          <LanguageSwitcher currentLocale={locale} label={tLocale("switch")} tone="light" />
         </header>
 
         <section className="grid flex-1 gap-12 pb-12 pt-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
           <div className="grid gap-8">
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-zinc-900/10 bg-white/90 px-4 py-2 text-sm text-zinc-700 shadow-sm">
               <span className="h-2 w-2 rounded-full bg-lime-300" />
               {tHome("badge")}
             </div>
 
             <div className="grid gap-5">
-              <h1 className="max-w-3xl text-5xl font-semibold leading-[1.02] tracking-[-0.05em] text-white md:text-7xl">
+              <h1 className="max-w-3xl text-5xl font-semibold leading-[1.02] tracking-[-0.05em] text-zinc-950 md:text-7xl">
                 {tHome("title")}
               </h1>
-              <p className="max-w-2xl text-lg leading-8 text-zinc-300 md:text-xl">{tHome("subtitle")}</p>
+              <p className="max-w-2xl text-lg leading-8 text-zinc-600 md:text-xl">{tHome("subtitle")}</p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3">
               {stats.map((item, index) => (
-                <div key={item} className="rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4 backdrop-blur">
+                <div key={item} className="rounded-[1.5rem] border border-zinc-900/10 bg-white/85 px-5 py-4 shadow-sm backdrop-blur">
                   <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">0{index + 1}</p>
-                  <p className="mt-3 text-sm font-medium text-zinc-100">{item}</p>
+                  <p className="mt-3 text-sm font-medium text-zinc-900">{item}</p>
                 </div>
               ))}
             </div>
 
-            <div className="grid gap-5 rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur lg:max-w-2xl">
+            <div className="grid gap-5 rounded-[2rem] border border-zinc-900/10 bg-white/82 p-6 shadow-sm backdrop-blur lg:max-w-2xl">
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">{tHome("previewTitle")}</p>
@@ -63,11 +63,11 @@ export default async function HomePage({
               </div>
               <div className="grid gap-4 md:grid-cols-3">
                 {previewPoints.map((point, index) => (
-                  <div key={point} className="rounded-[1.5rem] bg-black/30 p-5">
-                    <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/8 text-lime-300">
+                  <div key={point} className="rounded-[1.5rem] bg-zinc-50 p-5">
+                    <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white text-lime-500 shadow-sm">
                       {index === 0 ? <Clock3 className="h-5 w-5" /> : index === 1 ? <Sparkles className="h-5 w-5" /> : <Globe2 className="h-5 w-5" />}
                     </div>
-                    <p className="text-sm leading-7 text-zinc-200">{point}</p>
+                    <p className="text-sm leading-7 text-zinc-700">{point}</p>
                   </div>
                 ))}
               </div>
@@ -80,7 +80,7 @@ export default async function HomePage({
             <div className="relative grid gap-5">
               <div className="grid gap-2">
                 <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">{tHome("createTitle")}</p>
-                <p className="max-w-xl text-sm leading-7 text-zinc-300">{tHome("createDescription")}</p>
+                <p className="max-w-xl text-sm leading-7 text-zinc-600">{tHome("createDescription")}</p>
               </div>
               <CreateEventForm
                 locale={locale}
