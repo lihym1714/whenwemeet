@@ -20,6 +20,7 @@ export default async function EventPage({
   params: Promise<{ locale: AppLocale; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  const decodedSlug = decodeURIComponent(slug);
   const tEvent = await getTranslations({ locale, namespace: "Event" });
   const tLocale = await getTranslations({ locale, namespace: "Locale" });
 
@@ -42,7 +43,7 @@ export default async function EventPage({
     );
   }
 
-  const bundle = await getEventBundle(slug, locale);
+  const bundle = await getEventBundle(decodedSlug, locale);
 
   if (!bundle) {
     return (
@@ -63,7 +64,7 @@ export default async function EventPage({
     );
   }
 
-  const shareUrl = getShareUrl(locale, slug);
+  const shareUrl = getShareUrl(locale, decodedSlug);
   const days = buildScheduleDays(bundle.event, locale);
 
   return (
@@ -148,7 +149,7 @@ export default async function EventPage({
         {!bundle.viewer ? (
           <JoinEventForm
             locale={locale}
-            slug={slug}
+            slug={decodedSlug}
             labels={{
               title: tEvent("joinTitle"),
               description: tEvent("joinDescription"),
@@ -159,7 +160,7 @@ export default async function EventPage({
         ) : (
           <AvailabilityGrid
             locale={locale}
-            slug={slug}
+            slug={decodedSlug}
             event={bundle.event}
             initialSelectedSlots={bundle.viewerAvailability}
             slotCounts={bundle.slotCounts}
