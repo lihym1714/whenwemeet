@@ -1,0 +1,72 @@
+{
+  "Locale": {
+    "switch": "English",
+    "current": "한국어"
+  },
+  "Home": {
+    "badge": "기존 스케줄링 그리드보다 빠르게",
+    "title": "복잡한 일정 조율을 한눈에 끝내세요.",
+    "subtitle": "WhenWeMeet은 여러 사람의 가능 시간을 이중 언어 히트맵으로 정리해 가장 좋은 시간을 바로 찾게 도와줍니다.",
+    "createTitle": "일정 보드 만들기",
+    "createDescription": "기간, 타임존, 하루 시간대를 한 번만 설정하고 링크를 공유하세요. 참가자들은 바로 가능한 시간을 칠할 수 있습니다.",
+    "titleLabel": "이벤트 제목",
+    "hostLabel": "내 이름",
+    "descriptionLabel": "설명",
+    "timezoneLabel": "타임존",
+    "startDateLabel": "시작 날짜",
+    "endDateLabel": "종료 날짜",
+    "startTimeLabel": "하루 시작",
+    "endTimeLabel": "하루 종료",
+    "slotLabel": "시간 단위",
+    "submit": "이벤트 만들기",
+    "previewTitle": "When2Meet보다 나아진 점",
+    "previewPoints": {
+      "0": "데스크톱과 모바일에서 드래그 또는 탭으로 바로 선택할 수 있습니다.",
+      "1": "가장 겹치는 시간대를 읽기 쉬운 강도 표시로 바로 확인할 수 있습니다.",
+      "2": "한국어와 영어를 전환해도 맥락이 유지됩니다."
+    },
+    "stats": {
+      "0": "공유 가능한 링크",
+      "1": "한/영 UI",
+      "2": "타임존 안전 그리드"
+    }
+  },
+  "Event": {
+    "back": "새 보드 만들기",
+    "timezone": "타임존",
+    "slotSize": "시간 단위",
+    "participants": "참가자",
+    "share": "이벤트 공유",
+    "shareHint": "이 링크를 팀에 전달하세요.",
+    "joinTitle": "이 보드에 참여하기",
+    "joinDescription": "다른 사람에게 보일 이름을 입력하세요.",
+    "nameLabel": "표시 이름",
+    "joinSubmit": "참여하고 가능 시간 입력",
+    "save": "가능 시간 저장",
+    "saving": "저장 중...",
+    "saved": "저장됨",
+    "bestTimes": "가장 좋은 시간",
+    "noBestTimes": "참가자들이 가능 시간을 입력하면 가장 많이 겹치는 시간이 여기에 표시됩니다.",
+    "availability": "가능 시간 그리드",
+    "yourAvailability": "내 가능 시간",
+    "intensity": "전체 겹침 정도",
+    "emptyState": "아직 아무도 가능 시간을 입력하지 않았습니다.",
+    "missingSupabase": "아직 Supabase 환경 변수가 연결되지 않았습니다. 실데이터를 사용하려면 먼저 설정하세요.",
+    "summary": "선택한 슬롯 수",
+    "copy": "링크 복사",
+    "copied": "복사됨",
+    "manageNote": "로그인 없이도 참가자 선택이 Supabase 서버 액션으로 저장됩니다.",
+    "updatedAt": "최근 저장 시각",
+    "unknownParticipant": "익명 참가자"
+  },
+  "Errors": {
+    "generic": "문제가 발생했습니다. 다시 시도해 주세요.",
+    "missingFields": "필수 항목을 모두 입력해 주세요.",
+    "invalidTimeRange": "하루 종료 시간은 시작 시간보다 뒤여야 합니다.",
+    "invalidDateRange": "종료 날짜는 시작 날짜와 같거나 이후여야 합니다.",
+    "supabaseMissing": "이 환경에는 Supabase 환경 변수가 없습니다.",
+    "eventMissing": "이 이벤트를 찾을 수 없거나 더 이상 사용할 수 없습니다.",
+    "participantMissing": "저장하기 전에 먼저 이벤트에 참여해 주세요.",
+    "saveFailed": "지금은 가능 시간을 저장할 수 없습니다."
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "Locale": {
+    "switch": "한국어",
+    "current": "English"
+  },
+  "Home": {
+    "badge": "Faster than the old scheduling grid",
+    "title": "Find the overlap without the chaos.",
+    "subtitle": "WhenWeMeet turns rough availability into a clear, bilingual heatmap your whole group can act on.",
+    "createTitle": "Create a planning board",
+    "createDescription": "Set the date range, timezone and daily window once. Share the link and let everyone paint their availability.",
+    "titleLabel": "Event title",
+    "hostLabel": "Your name",
+    "descriptionLabel": "Description",
+    "timezoneLabel": "Timezone",
+    "startDateLabel": "Start date",
+    "endDateLabel": "End date",
+    "startTimeLabel": "Daily start",
+    "endTimeLabel": "Daily end",
+    "slotLabel": "Slot size",
+    "submit": "Create event",
+    "previewTitle": "What improves over When2Meet",
+    "previewPoints": {
+      "0": "Drag or tap to paint availability on desktop and mobile.",
+      "1": "See best windows instantly with a readable intensity scale.",
+      "2": "Switch Korean and English without losing context."
+    },
+    "stats": {
+      "0": "Shareable link",
+      "1": "Bilingual UI",
+      "2": "Timezone-safe grid"
+    }
+  },
+  "Event": {
+    "back": "Create another board",
+    "timezone": "Timezone",
+    "slotSize": "Slot size",
+    "participants": "Participants",
+    "share": "Share event",
+    "shareHint": "Send this link to your group.",
+    "joinTitle": "Join this board",
+    "joinDescription": "Enter the name you want everyone else to see.",
+    "nameLabel": "Display name",
+    "joinSubmit": "Join and edit availability",
+    "save": "Save availability",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "bestTimes": "Best windows",
+    "noBestTimes": "Once people add availability, the strongest overlaps will appear here.",
+    "availability": "Availability grid",
+    "yourAvailability": "Your availability",
+    "intensity": "Group intensity",
+    "emptyState": "No one has filled out availability yet.",
+    "missingSupabase": "Supabase is not configured yet. Add env vars before using live event data.",
+    "summary": "Selected slots",
+    "copy": "Copy link",
+    "copied": "Copied",
+    "manageNote": "Selections save to Supabase through server actions, so participants can stay login-free.",
+    "updatedAt": "Last updated",
+    "unknownParticipant": "Anonymous participant"
+  },
+  "Errors": {
+    "generic": "Something went wrong. Please try again.",
+    "missingFields": "Please fill in every required field.",
+    "invalidTimeRange": "The daily end time must be after the start time.",
+    "invalidDateRange": "The end date must be the same day or later than the start date.",
+    "supabaseMissing": "Supabase env vars are missing in this environment.",
+    "eventMissing": "This event does not exist or is no longer available.",
+    "participantMissing": "Join the event before saving availability.",
+    "saveFailed": "We could not save availability right now."
+  }
+}
