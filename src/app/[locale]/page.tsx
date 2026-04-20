@@ -54,10 +54,10 @@ export default async function HomePage({
               ))}
             </div>
 
-            <div className="grid gap-5 rounded-[2rem] border border-zinc-900/10 bg-white/82 p-6 shadow-sm backdrop-blur lg:max-w-2xl">
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">{tHome("previewTitle")}</p>
+              <div className="grid gap-5 rounded-[2rem] border border-zinc-900/10 bg-white/82 p-6 shadow-sm backdrop-blur lg:max-w-2xl">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">{tHome("previewTitle")}</p>
                 </div>
                 <ArrowUpRight className="h-5 w-5 text-lime-300" />
               </div>

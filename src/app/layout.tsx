@@ -20,7 +20,10 @@ const displayFont = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: "WhenWeMeet",
-  description: "A bilingual, Supabase-powered availability planner inspired by When2Meet.",
+  description: "A bilingual, Supabase-powered availability planner for finding the best meeting time.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default async function RootLayout({
