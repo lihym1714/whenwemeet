@@ -19,7 +19,7 @@ export type EventBundle = {
 };
 
 export function getParticipantCookieName(slug: string) {
-  return `wm_participant_${slug}`;
+  return `wm_participant_${encodeURIComponent(slug)}`;
 }
 
 export async function getEventBundle(slug: string, locale: AppLocale): Promise<EventBundle | null> {
