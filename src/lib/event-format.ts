@@ -3,7 +3,7 @@ import { getBaseUrl } from "@/lib/env";
 import { formatMinutes } from "@/lib/utils";
 
 export function getShareUrl(locale: AppLocale, slug: string) {
-  return `${getBaseUrl()}/${locale}/events/${slug}`;
+  return `${getBaseUrl()}/${locale}/events/${encodeURIComponent(slug)}`;
 }
 
 export function formatSlotSize(minutes: number) {

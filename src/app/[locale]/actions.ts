@@ -109,7 +109,7 @@ export async function createEventAction(
     maxAge: 60 * 60 * 24 * 30,
   });
 
-  redirect(`/${locale}/events/${slug}`);
+  redirect(`/${locale}/events/${encodeURIComponent(slug)}`);
 }
 
 export async function joinEventAction(
@@ -175,7 +175,7 @@ export async function joinEventAction(
     maxAge: 60 * 60 * 24 * 30,
   });
 
-  redirect(`/${locale}/events/${slug}`);
+  redirect(`/${locale}/events/${encodeURIComponent(slug)}`);
 }
 
 export async function saveAvailabilityAction(
@@ -232,7 +232,7 @@ export async function saveAvailabilityAction(
     return { status: "error", message: t("saveFailed") };
   }
 
-  revalidatePath(`/${locale}/events/${slug}`);
+  revalidatePath(`/${locale}/events/${encodeURIComponent(slug)}`);
 
   return {
     status: "success",
