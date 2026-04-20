@@ -41,7 +41,12 @@ export default async function RootLayout({
     >
       <body className="min-h-full bg-[var(--app-background)] text-[var(--app-foreground)]">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <div className="flex-1">{children}</div>
+            <footer className="border-t border-zinc-900/8 px-6 py-4 text-center text-sm text-zinc-500 lg:px-10">
+              © {new Date().getFullYear()} Kevin
+            </footer>
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>

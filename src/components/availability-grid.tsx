@@ -163,9 +163,7 @@ export function AvailabilityGrid({
                 onPointerUp={() => setDragMode(null)}
                 onPointerLeave={() => setDragMode(null)}
               >
-                <div className="sticky left-0 top-0 z-20 border-b border-r border-zinc-200 bg-zinc-100/95 px-4 py-4 text-xs font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                  {event.timezone}
-                </div>
+                <div className="sticky left-0 top-0 z-20 border-b border-r border-zinc-200 bg-zinc-100/95 px-4 py-4" />
                 {days.map((day) => (
                   <div key={day.isoDate} className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 px-4 py-4 text-center backdrop-blur">
                     <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">{day.shortLabel}</p>
@@ -255,7 +253,7 @@ export function AvailabilityGrid({
           </form>
         </div>
 
-        <aside className="grid gap-4 rounded-[1.75rem] border border-zinc-900/10 bg-white p-6 shadow-sm">
+        <aside className="grid h-fit content-start gap-4 self-start rounded-[1.75rem] border border-zinc-900/10 bg-white p-6 shadow-sm">
           <div>
             <p className="text-xs uppercase tracking-[0.24em] text-zinc-400">{labels.participants}</p>
           </div>
@@ -264,9 +262,10 @@ export function AvailabilityGrid({
               <span
                 key={participant.id}
                 className={cn(
-                  "inline-flex max-w-full items-center rounded-full px-3 py-2 text-sm font-semibold break-all",
+                  "inline-flex h-10 max-w-full items-center overflow-hidden rounded-full px-3 text-sm font-semibold whitespace-nowrap text-ellipsis",
                   colorClasses[participant.color_token] ?? colorClasses.lime,
                 )}
+                title={participant.display_name || labels.unknownParticipant}
               >
                 {participant.display_name || labels.unknownParticipant}
               </span>
